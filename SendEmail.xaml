@@ -1,0 +1,346 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendEmail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umamm="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Models;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ToEmail" Type="InArgument(scg:IEnumerable(x:String))" />
+    <x:Property Name="in_Subject" Type="InArgument(x:String)" />
+    <x:Property Name="in_EmailCC" Type="InArgument(scg:IEnumerable(x:String))" />
+    <x:Property Name="in_dtDetailFinal" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_dtDTOEFinal" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <this:SendEmail.in_ToEmail>
+    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" />
+  </this:SendEmail.in_ToEmail>
+  <this:SendEmail.in_Subject>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendEmail.in_Subject>
+  <this:SendEmail.in_EmailCC>
+    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" />
+  </this:SendEmail.in_EmailCC>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1513,1287</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SendEmail_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.MetadataLoadContext</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SendEmail" sap:VirtualizedContainerService.HintSize="1276,1970" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_Body" />
+      <Variable x:TypeArguments="x:String" Name="str_ProviderName" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Test" />
+      <Variable x:TypeArguments="x:String" Name="str_Htmltable" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="504,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="scg:IEnumerable(x:String)">[in_ToEmail]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">[{"naveen.chatlapalli@ashlingpartners.com"}]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[in_Subject]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">test</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:BuildDataTable DataTable="[dt_Test]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="504,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Sno&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Class&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Sno&gt;1&lt;/Sno&gt;&#xD;&#xA;    &lt;Name&gt;Naveen&lt;/Name&gt;&#xD;&#xA;    &lt;Class&gt;First&lt;/Class&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Sno&gt;2&lt;/Sno&gt;&#xD;&#xA;    &lt;Name&gt;Adam&lt;/Name&gt;&#xD;&#xA;    &lt;Class&gt;Sec&lt;/Class&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim htmlTable As String = &quot;&lt;table border='1' style='border-collapse: collapse; width: 100%;'&gt;&quot;&#xD;&#xA;htmlTable &amp;= &quot;&lt;tr&gt;&lt;th&gt;Encounter ID&lt;/th&gt;&lt;th&gt;Department ID&lt;/th&gt;&lt;th&gt;Department Name&lt;/th&gt;&lt;/tr&gt;&quot;&#xD;&#xA;&#xD;&#xA;For Each row As DataRow In YourDataTable.Rows&#xD;&#xA;    htmlTable &amp;= &quot;&lt;tr&gt;&quot;&#xD;&#xA;    htmlTable &amp;= &quot;&lt;td&gt;&quot; &amp; row(&quot;Sno&quot;).ToString() &amp; &quot;&lt;/td&gt;&quot;&#xD;&#xA;    htmlTable &amp;= &quot;&lt;td&gt;&quot; &amp; row(&quot;Name&quot;).ToString() &amp; &quot;&lt;/td&gt;&quot;&#xD;&#xA;    htmlTable &amp;= &quot;&lt;td&gt;&quot; &amp; row(&quot;Class&quot;).ToString() &amp; &quot;&lt;/td&gt;&quot;&#xD;&#xA;    htmlTable &amp;= &quot;&lt;/tr&gt;&quot;&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;htmlTable &amp;= &quot;&lt;/table&gt;&quot;&#xD;&#xA;&#xD;&#xA;' Assign the HTML table to a UiPath variable&#xD;&#xA;Out_HtmlTable = htmlTable&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="504,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="YourDataTable">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_Test" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="Out_HtmlTable">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_Htmltable" />
+        </OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <Assign sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_ProviderName]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Naveen Chatlapalli</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile File="{x:Null}" Content="[str_Body]" DisplayName="Read Text File" FileName="C:\Users\NaveenChatlapalli\OneDrive - Ashling Partners\Desktop\Reupload.htm" sap:VirtualizedContainerService.HintSize="504,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <Assign sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_Body]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[str_Body.Replace("&amp;lt;tabledata&amp;gt;",str_Htmltable)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="C:\Users\NaveenChatlapalli\OneDrive - Ashling Partners\Desktop\123.txt" sap:VirtualizedContainerService.HintSize="504,165" sap2010:WorkflowViewState.IdRef="WriteTextFile_2" Text="[str_Body]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="504,276" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_Body]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[str_Body.Replace("&amp;lt;Provider Name&amp;gt",str_ProviderName)]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <umam:SendMailConnections ArgumentAttachmentPaths="{x:Null}" ConnectionAccountName="{x:Null}" MailboxBackup="{x:Reference __ReferenceID0}" TextBody="{x:Null}" AttachmentInputMode="Builder" AttachmentPaths="{x:Null}" Attachments="{x:Null}" AuthScopesInvalid="False" Bcc="{x:Null}" Body="[str_Body]" Cc="[in_EmailCC]" ConnectionId="efeb4f40-2fbe-420d-a18a-8366cc92bad5" ContinueOnError="{x:Null}" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="504,534" sap2010:WorkflowViewState.IdRef="SendMailConnections_1" Importance="Normal" InputType="HTML" Mailbox="{x:Null}" ReplyTo="{x:Null}" SaveAsDraft="False" SingleAttachment="{x:Null}" Subject="[in_Subject]" To="[in_ToEmail]" UseConnectionService="True" UseSharedMailbox="False">
+      <umam:SendMailConnections.AttachmentList>
+        <scg:List x:TypeArguments="InArgument(upr:IResource)" Capacity="0" />
+      </umam:SendMailConnections.AttachmentList>
+      <umam:SendMailConnections.AttachmentsBackup>
+        <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Builder">
+          <usau:BackupSlot.BackupValues>
+            <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
+              <x:Null />
+            </scg:List>
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </umam:SendMailConnections.AttachmentsBackup>
+      <umam:SendMailConnections.InputTypeBackup>
+        <usau:BackupSlot x:TypeArguments="umame:BodyInputType" StoredValue="HTML">
+          <usau:BackupSlot.BackupValues>
+            <scg:List x:TypeArguments="x:Object" x:Key="HTML" Capacity="1">
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[string.Format("&lt;P&gt;&lt;SPAN&gt;Sent:                                           Monday, November 4, 2024 11:38 AM
+
+Subject:                                     CONFIDENTIAL QI - 1st Notice of delinquency for Open Encounters at 7 days from Date of Service
+
+ 
+
+Sent on behalf of: &amp;lt; Provider’s Clinic Medical Directors or Service Chiefs &amp;gt; 
+
+-----------------------------------------------------------------------------------------------
+
+ 
+
+Dear , 
+
+ 
+
+Thank you for taking excellent care of our patients. We appreciate how busy everyone can get at times.  Your history of commitment to excellent patient care is commendable, and the quality and safety of the care you provide depend significantly on timely and accurate documentation of your care. 
+
+ 
+
+This is a formal notification that the encounter(s) below remain unsigned after 7 calendar days from the date of service and need to be signed as soon and as accurately as possible. 
+
+ 
+
+Unsigned encounters cause potential safety and quality concerns for your patient’s care, lead to delays in necessary care (e.g., prior authorization of procedures or scans), and cause decrement in the reimbursement value of the care you’ve provided. 
+
+ 
+
+Resources are available to support you and help you optimize encounters closure. LMS Modules and other content has been created that provides some helpful tips for finding and closing open encounters. I would be happy to meet with you and customize other strategies.
+
+ 
+
+If the encounter(s) remain unsigned this will lead to the following outcomes:
+
+These formal notifications are filed in your medical staff credentials record and are reviewed during re-credentialing.
+If the encounter(s) below remain open after 28 calendar days from the date of service, then you may receive a formal notification of a temporary suspension of clinical privileges. This suspension would remain in effect until your encounters are closed.
+Please work on closing the following Open Encounters at the earliest.
+
+ 
+
+
+
+ 
+
+To view all your Open Encounters needing signature, please log-in to EPIC and navigate to your In-Basket and select the Open Encounter tab.
+
+ 
+
+Thank you, 
+
+ 
+
+Signature: 
+
+ 
+
+-----------------------------------------------------------------------------------------
+
+If you have received this notification in error, please click here to report.
+
+ 
+
+ 
+
+This is an unmonitored channel. For additional assitance pls. email fppstech@uw.edu.
+
+/Users/MarkusCruzada/Library/Containers/com.microsoft.Outlook/Data/Library/Caches/Signatures/signature_1440642808
+
+FPPS Robotics Process Automation
+
+Technology Improvements &amp;amp; Innovation | Technology Integration &amp;amp; Operations Support (TIOS)
+
+Faculty Practice Plan Services  |  UW Medicine
+
+850 Republican St., BLDG C – 3rd FL  |  Box 359110  |  Seattle, WA 98109
+WEB:  FPPS Remote Process Automation (uwmedicine.org)
+
+ 
+
+          
+
+/Users/MarkusCruzada/Library/Containers/com.microsoft.Outlook/Data/Library/Caches/Signatures/signature_1398991382
+
+Faculty Practice Plan Services (FPPS) – provides practice management services for UW Physicians (UWP).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The above email may contain patient identifiable or confidential information. Because email is not secure, please be aware of associated risks of email transmission. If you are communicating with a UW Medicine Provider or Researcher via email, your acceptance of the risk and agreement to the conditions for email communications is implied. (See http://www.uwmedicine.org/about/compliance/email-risk.) The information is intended for the individual named above. If you are not the intended recipient, any disclosure, copying, distribution or use of the contents of this information is prohibited. Please notify the sender by reply email, and then destroy all copies of the message and any attachments. See our Notice of Privacy Practices at http://www.uwmedicine.org/about/privacy
+
+ &lt;/SPAN&gt;&lt;/P&gt;")]</InArgument>
+            </scg:List>
+            <scg:List x:TypeArguments="x:Object" x:Key="TEXT" Capacity="1">
+              <InArgument x:TypeArguments="x:String">[str_Body]</InArgument>
+            </scg:List>
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </umam:SendMailConnections.InputTypeBackup>
+      <umam:SendMailConnections.MailboxArg>
+        <umamm:MailboxArgument SharedMailbox="{x:Null}" UseSharedMailbox="False">
+          <umamm:MailboxArgument.Backup>
+            <usau:BackupSlot x:TypeArguments="umame:MailboxSelectionMode" x:Name="__ReferenceID0" StoredValue="NoMailbox">
+              <usau:BackupSlot.BackupValues>
+                <scg:Dictionary x:TypeArguments="umame:MailboxSelectionMode, scg:List(x:Object)" />
+              </usau:BackupSlot.BackupValues>
+            </usau:BackupSlot>
+          </umamm:MailboxArgument.Backup>
+        </umamm:MailboxArgument>
+      </umam:SendMailConnections.MailboxArg>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </umam:SendMailConnections>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="504,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Email Sent&quot;]" />
+  </Sequence>
+</Activity>
